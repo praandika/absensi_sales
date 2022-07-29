@@ -110,6 +110,11 @@ button.custom-btn:focus{
     color: #ffffff;
 }
 
+button.custom-btn img{
+    margin-top: -2px;
+    max-width: 15px;
+}
+
 .btn-edit{
     border-radius: 30px;
     background-color: #2da980;
@@ -117,14 +122,31 @@ button.custom-btn:focus{
     border: none;
 }
 
-a.btn-edit{
-    text-decoration: none;
+a.custom-btn{
+    border-radius: 30px;
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    border: none;
+    color: #ffffff;
+    transition: background-color 1s ease-out !important;
+}
+
+a.custom-btn:hover{
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(103,32,218,1) 21%, rgba(59,102,204,1) 82%);
+}
+
+a.custom-btn:focus{
     color: #ffffff;
 }
 
-button.custom-btn img{
+a.custom-btn img{
     margin-top: -2px;
     max-width: 15px;
+}
+
+a.btn-edit{
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .padding-btn{
@@ -213,10 +235,6 @@ nav .nav-tabs button.custom-nav-tab.active{
     color: #ffffff;
 }
 
-.table-custom tr td{
-    padding: 50px;
-}
-
 .table-custom tr:nth-child(even){
     background-color: #0F0F0F;
 }
@@ -236,7 +254,7 @@ nav .nav-tabs button.custom-nav-tab.active{
 .dataTables_filter input,
 #myTable_info,
 #modal-filter-select_info{
-    color: #ffffff;
+    color: #7A7A7A;
 }
 
 #myTable_length select{
@@ -251,6 +269,7 @@ nav .nav-tabs button.custom-nav-tab.active{
 
 .dataTables_length select:hover{
     background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    color: #ffffff;
 }
 
 #myTable_filter input{

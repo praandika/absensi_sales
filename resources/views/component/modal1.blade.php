@@ -29,11 +29,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn custom-btn padding-btn">
-                    <img src="{{ asset('img/save.png') }}">&nbsp;Save changes
-                </button>
-            </div>
         </div>
     </div>
 </div>

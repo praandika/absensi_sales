@@ -72,7 +72,7 @@ class AbsenController extends Controller
         $data->save();
         
         
-        return redirect()->back();
+        return redirect()->route('absen');
     }
 
     public function off(Request $req)
@@ -85,7 +85,7 @@ class AbsenController extends Controller
         $data -> keterangan = 'Libur';
         $data->save();
         
-        return redirect()->back();
+        return redirect()->route('absen');
     }
 
     /**
@@ -114,7 +114,10 @@ class AbsenController extends Controller
         $tanggal_akhir = $req->tanggal_akhir;
         $sales_id2 = $req->sales_id2;
 
-        $sale = Sale::all();
+        $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+        ->orderBy('dealers.dealer_code','asc')
+        ->select('dealers.dealer_name','sales.id','sales.nama_sales')
+        ->get();
         $data = Absen::join('sales','absens.sales_id','=','sales.id')
         ->whereBetween('tanggal',[$tanggal_awal, $tanggal_akhir])
         ->where('sales_id',$sales_id2)
