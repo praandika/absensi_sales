@@ -56,6 +56,11 @@ class DealerSeeder extends Seeder
                 'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
             ],
             [
+                'dealer_name' => 'Bisma Dalung',
+                'dealer_code' => 'AA0104-01',
+                'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+            ],
+            [
                 'dealer_name' => 'FSS',
                 'dealer_code' => 'AA0104F',
                 'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
