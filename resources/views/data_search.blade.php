@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Absen')
+@section('title','Cari Absen')
 
 @section('content')
 
@@ -13,6 +13,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-12 container-table-custom">
+                <a href="{{ url('export/'.$tanggal_awal.'/'.$tanggal_akhir.'/'.$sales_id2) }}"
+                class="btn custom-btn padding-btn my-3">EXPORT EXCEL</a>
                     <table class="table table-custom" id="myTable">
                         <thead>
                             <tr>
@@ -51,7 +53,6 @@
 @include('component.modal1')
 @include('component.modal2')
 @include('component.modal3')
-
 
 @push('script')
 <script>

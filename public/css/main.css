@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #0F0F0F;
+    font-family: 'Montserrat', sans-serif;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.login-card{
+    background-color: #121418;
+    margin-top: 200px;
+    padding: 0px 50px 50px 50px;
+    border-radius: 50px;
+}
+
+.login-card .logo{
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 0px 40px 0px;
+}
+
+input.custom-input{
+    background-color: #0F0F0F;
+    border: 1px solid #393939;
+    border-radius: 30px;
+    color: #ffffff !important;
+    font-size: 15px;
+}
+
+input[type=date]{
+    color: #6f6f6f !important;
+}
+
+input.custom-input::placeholder{
+    color: #6f6f6f;
+}
+
+input.custom-input:focus{
+    box-shadow: none;
+    background-color: #0F0F0F;
+    border: 1px solid #393939;
+}
+
+input.center-input{
+    text-align: center;
+}
+
+input.center-input::placeholder{
+    text-align: center;
+}
+
+.custom-label{
+    color: #0F0F0F;
+    font-weight: bold;
+    text-shadow: 2px 1px 2px #242831;
+}
+
+select.custom-select{
+    background-color: #0F0F0F;
+    border: 1px solid #393939;
+    border-radius: 30px;
+    color: #ffffff !important;
+    font-size: 15px;
+}
+
+select.custom-select:focus{
+    box-shadow: none;
+    background-color: #0F0F0F;
+    border: 1px solid #393939;
+}
+
+/* Input Group Custom */
+
+.group-input{
+    position: relative;
+}
+
+.group-input img{
+    max-width: 20px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
+
+/* END Input Group Custom */
+
+button.custom-btn{
+    border-radius: 30px;
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    border: none;
+    color: #ffffff;
+    transition: background-color 1s ease-out !important;
+}
+
+button.custom-btn:hover{
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(103,32,218,1) 21%, rgba(59,102,204,1) 82%);
+}
+
+button.custom-btn:focus{
+    color: #ffffff;
+}
+
+button.custom-btn img{
+    margin-top: -2px;
+    max-width: 15px;
+}
+
+.btn-edit{
+    border-radius: 30px;
+    background-color: #2da980;
+    padding: 5px 15px 5px 15px;
+    border: none;
+}
+
+a.custom-btn{
+    border-radius: 30px;
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    border: none;
+    color: #ffffff;
+    transition: background-color 1s ease-out !important;
+}
+
+a.custom-btn:hover{
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(103,32,218,1) 21%, rgba(59,102,204,1) 82%);
+}
+
+a.custom-btn:focus{
+    color: #ffffff;
+}
+
+a.custom-btn img{
+    margin-top: -2px;
+    max-width: 15px;
+}
+
+a.btn-edit{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.padding-btn{
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.navbar-brand img{
+    max-width: 100px;
+    margin-top: -4px;
+}
+
+.custom-navbar{
+    background-color: #0F0F0F !important;
+    border-bottom: 1px solid #393939;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item a{
+    color: #7A7A7A
+}
+
+.custom-profile img{
+    max-width: 25px;
+    margin-right: 7px;
+    margin-top: -3px;
+}
+
+.custom-dropmenu{
+    background-color: #121418 !important;
+    font-size: 15px;
+}
+
+.custom-dropmenu a:hover{
+    background-color: #121418 !important;
+    color: rgb(200, 91, 91);
+}
+
+.tab-content{
+    background-color: #242831;
+    border-radius: 0px 30px 30px 30px;
+}
+
+.nav-tabs{
+    border: none;
+    font-weight: bold;
+}
+
+nav .nav-tabs button.custom-nav-tab{
+    background-color: #121418;
+    color: #7A7A7A;
+    margin-bottom: 16px;
+}
+
+nav .nav-tabs button.custom-nav-tab.active{
+    background-color: #242831;
+    color: #ffffff;
+    border: none;
+}
+
+.form-custom{
+    padding: 20px 20px 0px 20px;
+    font-size: 5px !important;
+}
+
+.hr{
+    border: 1px solid #6f6f6f;
+}
+
+.card-custom{
+    background-color: #242831;
+    padding: 40px;
+}
+
+.judul{
+    color: #ffffff;
+}
+
+/* Table */
+.container-table-custom{
+    padding: 30px;
+}
+
+.table-custom{
+    color: #ffffff;
+}
+
+.table-custom tr:nth-child(even){
+    background-color: #0F0F0F;
+}
+
+.table-custom tr:hover{
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+}
+
+.table-custom thead{
+    color: #ffffff;
+    background-color: #0F0F0F;
+}
+
+.dataTables_length label,
+.dataTables_length select,
+.dataTables_filter label,
+.dataTables_filter input,
+#myTable_info,
+#modal-filter-select_info{
+    color: #7A7A7A;
+}
+
+#myTable_length select{
+    background-color: #121418;
+    border: 1px solid #393939;
+    border-radius: 30px;
+}
+
+.dataTables_length select option{
+    background-color: #0F0F0F;
+}
+
+.dataTables_length select:hover{
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    color: #ffffff;
+}
+
+#myTable_filter input{
+    background-color: #121418;
+    border: 1px solid #393939;
+    border-radius: 30px;
+    text-indent: 10px;
+}
+
+.dataTables_filter{
+    margin-bottom: 10px;
+}
+
+#myTable_paginate{
+    margin-top: 10px;
+}
+
+#myTable_paginate .paginate_button.previous{
+    background-color: #121418;
+    border-radius: 20px 0px 0px 20px;
+}
+
+#myTable_paginate .paginate_button.current{
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+#myTable_paginate .paginate_button.next{
+    background-color: #121418;
+    border-radius: 0px 20px 20px 0px;
+}
+/* END Table */
+
+/* Modal Custom */
+.modal-custom{
+    background-color: #242831;
+    color: #ffffff;
+}
+
+#modal-filter-select_paginate .paginate_button.previous{
+    background-color: #121418;
+    border-radius: 20px 0px 0px 20px;
+}
+
+#modal-filter-select_paginate .paginate_button.current{
+    background: linear-gradient(90deg, rgba(59,102,204,1) 21%, rgba(103,32,218,1) 82%);
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+#modal-filter-select_paginate .paginate_button.next{
+    background-color: #121418;
+    border-radius: 0px 20px 20px 0px;
+}
+
+#modal-filter-select_filter input{
+    background-color: #121418;
+    border: 1px solid #393939;
+    border-radius: 30px;
+    text-indent: 10px;
+}
+
+#modal-filter-select_length select{
+    background-color: #121418;
+    border: 1px solid #393939;
+    border-radius: 30px;
+}
+/* END Modal Custom */

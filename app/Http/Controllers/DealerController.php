@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dealer;
-use App\Models\Sale;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class SaleController extends Controller
+class DealerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +16,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
-        ->orderBy('dealers.dealer_code','asc')
-        ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
+        $data = Dealer::orderBy('dealer_code','asc')
         ->get();
 
-        $dealer = Dealer::orderBy('dealer_code','asc')
-        ->get();
-
-        return view('data_sales',compact('data','dealer'));
+        return view('data_dealer',compact('data'));
     }
 
     /**
@@ -45,22 +40,22 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Sale;
-        $data->nama_sales = $request->nama;
-        $data->dealer_id = $request->dealer;
+        $data = new Dealer;
+        $data->dealer_name = $request->dealer_name;
+        $data->dealer_code = $request->dealer_code;
         $data->created_at = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
         $data->save();
 
-        return redirect()->route('sales.index');
+        return redirect()->route('dealer.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Manpower  $manpower
+     * @param  \App\Models\Dealer  $dealer
      * @return \Illuminate\Http\Response
      */
-    public function show(Manpower $manpower)
+    public function show(Dealer $dealer)
     {
         //
     }
@@ -68,35 +63,30 @@ class SaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Manpower  $manpower
+     * @param  \App\Models\Dealer  $dealer
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
-        ->where('sales.id',$id)
-        ->select('dealers.dealer_name','sales.nama_sales','sales.id','sales.dealer_id')
+        $data = Dealer::where('id',$id)
         ->get();
 
-        $dealer = Dealer::orderBy('dealer_code','asc')
-        ->get();
-
-        return view('edit_sales', compact('data', 'dealer'));
+        return view('edit_dealer', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Manpower  $manpower
+     * @param  \App\Models\Dealer  $dealer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        Sale::where('id',$request->id)
+        Dealer::where('id',$request->id)
         ->update([
-            'nama_sales' => $request->nama,
-            'dealer_id' => $request->dealer,
+            'dealer_name' => $request->dealer_name,
+            'dealer_code' => $request->dealer_code,
             'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
         ]);
 
@@ -106,10 +96,10 @@ class SaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Manpower  $manpower
+     * @param  \App\Models\Dealer  $dealer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manpower $manpower)
+    public function destroy(Dealer $dealer)
     {
         //
     }

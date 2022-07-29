@@ -16,8 +16,13 @@ class sales_seeder extends Seeder
     {
         \App\Models\Sale::insert([
             [
-                'nama_sales' => 'i gede pasek beratha astana',
+                'nama_sales' => 'I Gede Pasek Beratha Astana',
                 'dealer_id' => '1',
+                'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+            ],
+            [
+                'nama_sales' => 'I Wayan Andika Pranayoga',
+                'dealer_id' => '2',
                 'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
             ],
         ]);
