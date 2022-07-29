@@ -19,8 +19,13 @@ class users_seeder extends Seeder
             [
                 'nama' => 'pasek',
                 'username' => 'pasek85',
-                'sales_id' => '1',
                 'password' => Hash::make('pasek123456'),
+                'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+            ],
+            [
+                'nama' => 'I Wayan Andika Pranayoga',
+                'username' => 'andika',
+                'password' => Hash::make('andika18'),
                 'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
             ],
         ]);

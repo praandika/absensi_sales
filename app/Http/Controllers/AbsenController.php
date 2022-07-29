@@ -8,20 +8,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Auth;
 use App\Exports\AbsensiExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AbsenController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        
+        $today = Carbon::now('GMT+8')->format('Y-m-d');
         $data = Absen::join('sales','absens.sales_id','=','sales.id')
+        ->where('absens.tanggal',$today)
         ->get();
-        $sale = Sale::all();
+        $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+        ->orderBy('dealers.dealer_code','asc')
+        ->select('dealers.dealer_name','sales.id','sales.nama_sales')
+        ->get();
         return view('data',compact('data','sale'));
     }
 
@@ -52,15 +59,15 @@ class AbsenController extends Controller
 
         if($sekarang > $telat)
         {
-        $data -> sales_id = $req->sales_id;
-        $data -> tanggal = Carbon::now('GMT+8')->format('Y-m-d');
-        $data -> waktu = Carbon::now('GMT+8')->format('H:i:s');
-        $data -> keterangan = 'Terlambat';
+        $data->sales_id = $req->sales_id;
+        $data->tanggal = Carbon::now('GMT+8')->format('Y-m-d');
+        $data->waktu = Carbon::now('GMT+8')->format('H:i:s');
+        $data->keterangan = 'Terlambat';
         }else{
-        $data -> sales_id = $req->sales_id;
-        $data -> tanggal = Carbon::now('GMT+8')->format('Y-m-d');
-        $data -> waktu = Carbon::now('GMT+8')->format('H:i:s');
-        $data -> keterangan = 'Tepat Waktu';
+        $data->sales_id = $req->sales_id;
+        $data->tanggal = Carbon::now('GMT+8')->format('Y-m-d');
+        $data->waktu = Carbon::now('GMT+8')->format('H:i:s');
+        $data->keterangan = 'Tepat Waktu';
         }
         $data->save();
         
@@ -99,12 +106,26 @@ class AbsenController extends Controller
         ->where('sales_id',$sales_id2)
         ->get();
 
-        return view('data',compact('data','sale'));
+        return view('data_search',compact('data','sale','tanggal_awal','tanggal_akhir','sales_id2'));
     }
 
-    public function export_excel($tanggal_akhir, $tanggal_awal)
+    public function search(Request $req){
+        $tanggal_awal = $req->tanggal_awal;
+        $tanggal_akhir = $req->tanggal_akhir;
+        $sales_id2 = $req->sales_id2;
+
+        $sale = Sale::all();
+        $data = Absen::join('sales','absens.sales_id','=','sales.id')
+        ->whereBetween('tanggal',[$tanggal_awal, $tanggal_akhir])
+        ->where('sales_id',$sales_id2)
+        ->get();
+
+        return view('data_search', compact('data','tanggal_awal','tanggal_akhir','sales_id2','sale'));
+    }
+
+    public function export_excel($tanggal_awal, $tanggal_akhir, $sales_id2)
 	{
-		return (new AbsensiExport)->tanggal_awal($tanggal_awal)->tanggal_akhir($tanggal_akhir)->download('absensi'.$tanggal_awal.'-'.$tanggal_akhir.'absen.xlsx');
+		return (new AbsensiExport)->tanggal_awal($tanggal_awal)->tanggal_akhir($tanggal_akhir)->sales($sales_id2)->download('absensi'.$tanggal_awal.'-'.$tanggal_akhir.'-'.$sales_id2.'absen.xlsx');
 	}
     
 
