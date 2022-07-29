@@ -15,33 +15,33 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card card-custom">
-                <table class="table table-custom" id="myTable">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Dealer Code</th>
-                            <th scope="col">Dealer Name</th>
-                            <th>Act</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php($no = 1)
-                        @forelse ($data as $a)
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$a->dealer_code}}</td>
-                            <td>{{$a->dealer_name}}</td>
-                            <td><a href="{{ url('dealer/'.$a->id.'/edit') }}" class="btn-edit">Edit</a></td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" style="text-align: center;">No data available</td>
-                        </tr>
-                        @endforelse
-
-                    </tbody>
-
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-custom" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Dealer Code</th>
+                                <th scope="col">Dealer Name</th>
+                                <th>Act</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php($no = 1)
+                            @forelse ($data as $a)
+                            <tr>
+                                <td>{{$no++}}</td>
+                                <td>{{$a->dealer_code}}</td>
+                                <td>{{$a->dealer_name}}</td>
+                                <td><a href="{{ url('dealer/'.$a->id.'/edit') }}" class="btn-edit">Edit</a></td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" style="text-align: center;">No data available</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
