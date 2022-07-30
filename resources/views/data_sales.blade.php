@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn custom-btn">Reset</button>
-                    <button type="button" class="btn custom-btn padding-btn">
+                    <button type="submit" class="btn custom-btn padding-btn">
                         <img src="{{ asset('img/save.png') }}">&nbsp;Save Changes
                     </button>
                 </div>

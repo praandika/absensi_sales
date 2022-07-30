@@ -24,7 +24,7 @@
                     <button type="reset" class="btn custom-btn">Reset</button>
                 </div>
                 <div class="col-md-6" style="text-align: right;">
-                    <button type="button" class="btn custom-btn padding-btn">
+                    <button type="submit" class="btn custom-btn padding-btn">
                         <img src="{{ asset('img/save.png') }}">&nbsp;Save Changes
                     </button>
                 </div>
