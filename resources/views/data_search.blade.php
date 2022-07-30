@@ -10,10 +10,11 @@
             tabindex="0">
 
             @include('component.form_absen')
+            @include('component.form_search')
 
             <div class="row justify-content-center">
                 <div class="col-md-12 container-table-custom">
-                <a href="{{ url('export/'.$tanggal_awal.'/'.$tanggal_akhir.'/'.$sales_id2) }}"
+                <a href="{{ url('export/'.$tanggal_awal.'/'.$tanggal_akhir.'/'.$sales_id2.'/'.$dealer_code) }}"
                 class="btn custom-btn padding-btn my-3">EXPORT EXCEL</a>
                     <div class="table-responsive">
                         <table class="table table-custom" id="myTable">

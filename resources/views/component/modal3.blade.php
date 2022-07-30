@@ -35,3 +35,13 @@
     </div>
 </div>
 <!--modal3-->
+
+@push('script')
+<script>
+    $(document).on('click', '.klik3', function (e) {
+        $('#sales_id3').val($(this).attr('data-id3'));
+        $('#nama_sales3').val($(this).attr('data-nama3'));
+        $('#exampleModal3').modal('hide');
+    });
+</script>
+@endpush

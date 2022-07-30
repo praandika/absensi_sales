@@ -27,7 +27,7 @@ class AbsenController extends Controller
         ->get();
         $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
         ->orderBy('dealers.dealer_code','asc')
-        ->select('dealers.dealer_name','sales.id','sales.nama_sales')
+        ->select('dealers.dealer_name','sales.id','sales.nama_sales','dealers.dealer_code')
         ->get();
         return view('data',compact('data','sale'));
     }
@@ -96,39 +96,30 @@ class AbsenController extends Controller
      */
     public function show(Request $req)
     {
-        $tanggal_awal = $req->tanggal_awal;
-        $tanggal_akhir = $req->tanggal_akhir;
-        $sales_id2 = $req->sales_id2;
-
-        $sale = Sale::all();
-        $data = Absen::join('sales','absens.sales_id','=','sales.id')
-        ->whereBetween('tanggal',[$tanggal_awal, $tanggal_akhir])
-        ->where('sales_id',$sales_id2)
-        ->get();
-
-        return view('data_search',compact('data','sale','tanggal_awal','tanggal_akhir','sales_id2'));
+        
     }
 
     public function search(Request $req){
         $tanggal_awal = $req->tanggal_awal;
         $tanggal_akhir = $req->tanggal_akhir;
         $sales_id2 = $req->sales_id2;
+        $dealer_code = $req->dealer_code;
 
         $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
         ->orderBy('dealers.dealer_code','asc')
-        ->select('dealers.dealer_name','sales.id','sales.nama_sales')
+        ->select('dealers.dealer_name','sales.id','sales.nama_sales','dealers.dealer_code')
         ->get();
         $data = Absen::join('sales','absens.sales_id','=','sales.id')
         ->whereBetween('tanggal',[$tanggal_awal, $tanggal_akhir])
         ->where('sales_id',$sales_id2)
         ->get();
 
-        return view('data_search', compact('data','tanggal_awal','tanggal_akhir','sales_id2','sale'));
+        return view('data_search', compact('data','tanggal_awal','tanggal_akhir','sales_id2','sale','dealer_code'));
     }
 
-    public function export_excel($tanggal_awal, $tanggal_akhir, $sales_id2)
+    public function export_excel($tanggal_awal, $tanggal_akhir, $sales_id2, $dealer_code)
 	{
-		return (new AbsensiExport)->tanggal_awal($tanggal_awal)->tanggal_akhir($tanggal_akhir)->sales($sales_id2)->download('absensi'.$tanggal_awal.'-'.$tanggal_akhir.'-'.$sales_id2.'absen.xlsx');
+		return (new AbsensiExport)->tanggal_awal($tanggal_awal)->tanggal_akhir($tanggal_akhir)->sales($sales_id2)->dealer($dealer_code)->download('absensi_'.$tanggal_awal.'_sd_'.$tanggal_akhir.'-'.$sales_id2.'-'.$dealer_code.'.xlsx');
 	}
     
 

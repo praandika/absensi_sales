@@ -45,13 +45,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('absen') }}">Absen</a>
+                            <a class="nav-link {{ Route::is('absen.*') || Route::is('absen') ? 'active-menu' : '' }}" href="{{ route('absen') }}">Absen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('sales.index') }}">Data Sales</a>
+                            <a class="nav-link {{ Route::is('sales.*') ? 'active-menu' : '' }}" href="{{ route('sales.index') }}">Data Sales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dealer.index') }}">Data Dealer</a>
+                            <a class="nav-link {{ Route::is('dealer.*') ? 'active-menu' : '' }}" href="{{ route('dealer.index') }}">Data Dealer</a>
                         </li>
 
                         <!-- Authentication Links -->
