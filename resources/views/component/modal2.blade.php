@@ -8,28 +8,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="modal-filter-select" class="display table tableSales table-custom" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Nama Sales</th>
-                            <th>Dealer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($sale as $o)
-                        <tr data-id2="{{ $o->id}}" data-nama2="{{ $o->nama_sales }}" class="klik2">
-                            <td>{{ $o->nama_sales }}</td>
-                            <td>{{ $o->dealer_name }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="6" style="text-align: center;">No data available</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="modal-filter-select" class="display table tableSales table-custom" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Nama Sales</th>
+                                <th>Dealer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($sale as $o)
+                            <tr data-id2="{{ $o->id}}" data-nama2="{{ $o->nama_sales }}" data-dealer="{{ $o->dealer_code }}" class="klik2">
+                                <td>{{ $o->nama_sales }}</td>
+                                <td>{{ $o->dealer_name }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No data available</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!--modal2-->
+
+@push('script')
+<script>
+    $(document).on('click', '.klik2', function (e) {
+        $('#dealer_code').val($(this).attr('data-dealer'));
+        $('#sales_id2').val($(this).attr('data-id2'));
+        $('#nama_sales2').val($(this).attr('data-nama2'));
+        $('#exampleModal2').modal('hide');
+    });
+</script>
+@endpush

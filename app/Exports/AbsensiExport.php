@@ -3,9 +3,12 @@
 namespace App\Exports;
 
 use App\Models\Absen;
+use App\Models\Sale;
+use App\Models\Dealer;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Illuminate\Support\Carbon;
 
 class AbsensiExport implements FromView
 {
@@ -29,6 +32,12 @@ class AbsensiExport implements FromView
         return $this;
     }
 
+    public function dealer(string $dealer_code)
+    {
+        $this->dealer_code = $dealer_code;
+        return $this;
+    }
+
     public function view(): View
     {
         
@@ -36,7 +45,35 @@ class AbsensiExport implements FromView
             'data' => Absen::join('sales','absens.sales_id','=','sales.id')
             ->where('absens.sales_id',$this->sales_id2)
             ->whereBetween('absens.tanggal',[$this->tanggal_awal, $this->tanggal_akhir])
-            ->get()
+            ->get(),
+            'nama' => Sale::where('id',$this->sales_id2)
+            ->select('nama_sales')
+            ->get(),
+            'dealer' => Dealer::where('dealer_code',$this->dealer_code)
+            ->select('dealer_name')
+            ->get(),
+            'today' => Carbon::now('GMT+8'),
+            'kerja' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$this->sales_id2],
+                ['absens.keterangan','=','Tepat Waktu']
+            ])
+            ->whereBetween('absens.tanggal',[$this->tanggal_awal, $this->tanggal_akhir])
+            ->count(),
+            'terlambat' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$this->sales_id2],
+                ['absens.keterangan','=','Terlambat']
+            ])
+            ->whereBetween('absens.tanggal',[$this->tanggal_awal, $this->tanggal_akhir])
+            ->count(),
+            'libur' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$this->sales_id2],
+                ['absens.keterangan','=','Libur']
+            ])
+            ->whereBetween('absens.tanggal',[$this->tanggal_awal, $this->tanggal_akhir])
+            ->count()
         ]);
     }
 }

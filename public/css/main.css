@@ -299,6 +299,13 @@ nav .nav-tabs button.custom-nav-tab.active{
     color: #ffffff !important;
 }
 
+#myTable_paginate .paginate_button{
+    border: 1px solid rgba(103,32,218,1);
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
 #myTable_paginate .paginate_button.next{
     background-color: #121418;
     border-radius: 0px 20px 20px 0px;
@@ -323,6 +330,13 @@ nav .nav-tabs button.custom-nav-tab.active{
     color: #ffffff !important;
 }
 
+#modal-filter-select_paginate .paginate_button{
+    border: 1px solid rgba(103,32,218,1);
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
 #modal-filter-select_paginate .paginate_button.next{
     background-color: #121418;
     border-radius: 0px 20px 20px 0px;
@@ -341,3 +355,12 @@ nav .nav-tabs button.custom-nav-tab.active{
     border-radius: 30px;
 }
 /* END Modal Custom */
+
+.active-menu{
+    background: #3b66cc; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3b66cc, #6720da); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3b66cc, #6720da); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}

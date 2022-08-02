@@ -31,4 +31,6 @@ Route::get('/absen', [App\Http\Controllers\AbsenController::class, 'index'])->na
 Route::post('absen/store',[App\Http\Controllers\AbsenController::class, 'store'])->name('absen.store');
 Route::get('absen/search',[App\Http\Controllers\AbsenController::class, 'search'])->name('absen.search');
 Route::post('absen/off',[App\Http\Controllers\AbsenController::class, 'off'])->name('absen.off');
-Route::get('export/{tanggal_awal}/{tanggal_akhir}/{sales}', [App\Http\Controllers\AbsenController::class, 'export_excel'])->name('absen.export_excel');
+Route::get('export/{tanggal_awal}/{tanggal_akhir}/{sales}/{dealer}', [App\Http\Controllers\AbsenController::class, 'export_excel'])->name('absen.export_excel');
+Route::get('pdf/{tanggal_awal}/{tanggal_akhir}/{sales}/{dealer}', [App\Http\Controllers\AbsenController::class, 'generate_pdf'])->name('absen.generate_pdf');
+Route::get('original', [App\Http\Controllers\AbsenController::class, 'original'])->name('original');
