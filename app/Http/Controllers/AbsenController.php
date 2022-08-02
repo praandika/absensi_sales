@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Absen;
 use App\Models\Sale;
+use App\Models\Dealer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Auth;
 use App\Exports\AbsensiExport;
+use PDF;
 
 class AbsenController extends Controller
 {
@@ -121,6 +123,54 @@ class AbsenController extends Controller
 	{
 		return (new AbsensiExport)->tanggal_awal($tanggal_awal)->tanggal_akhir($tanggal_akhir)->sales($sales_id2)->dealer($dealer_code)->download('absensi_'.$tanggal_awal.'_sd_'.$tanggal_akhir.'-'.$sales_id2.'-'.$dealer_code.'.xlsx');
 	}
+
+    public function generate_pdf($tanggal_awal, $tanggal_akhir, $sales_id2, $dealer_code){
+        $ta = date_format($tanggal_awal, "Ymd");
+        $tak = date_format($tanggal_akhir, "Ymd");
+        $data  =[
+            'absen' => Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where('absens.sales_id',$sales_id2)
+            ->whereBetween('absens.tanggal',[$tanggal_awal, $tanggal_akhir])
+            ->get(),
+            'nama' => Sale::where('id',$sales_id2)
+            ->select('nama_sales')
+            ->get(),
+            'dealer' => Dealer::where('dealer_code',$dealer_code)
+            ->select('dealer_name')
+            ->get(),
+            'today' => Carbon::now('GMT+8'),
+            'kerja' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$sales_id2],
+                ['absens.keterangan','=','Tepat Waktu']
+            ])
+            ->whereBetween('absens.tanggal',[$tanggal_awal, $tanggal_akhir])
+            ->count(),
+            'terlambat' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$sales_id2],
+                ['absens.keterangan','=','Terlambat']
+            ])
+            ->whereBetween('absens.tanggal',[$tanggal_awal, $tanggal_akhir])
+            ->count(),
+            'libur' =>Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where([
+                ['absens.sales_id',$sales_id2],
+                ['absens.keterangan','=','Libur']
+            ])
+            ->whereBetween('absens.tanggal',[$tanggal_awal, $tanggal_akhir])
+            ->count(),
+            'code' => 'Si'.$dealer_code.$ta.'BISMA'.$tak.'-'.$sales_id2,
+            ];
+
+        $pdf = PDF::loadView('pdf.absensi', $data);
+
+        return $pdf->download('absensi_'.$tanggal_awal.'_sd_'.$tanggal_akhir.'-'.$sales_id2.'-'.$dealer_code.'.pdf');
+    }
+
+    public function original(){
+        return view('original');
+    }
     
 
     /**
