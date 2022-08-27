@@ -22,6 +22,19 @@ class SaleController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->dealer = 'group') {
+            $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+            ->orderBy('dealers.dealer_code','asc')
+            ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
+            ->get();
+        } else {
+            $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+            ->where('dealers.dealer_code',Auth::user()->dealer)
+            ->orderBy('dealers.dealer_code','asc')
+            ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
+            ->get();
+        }
+        
         $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
         ->orderBy('dealers.dealer_code','asc')
         ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
