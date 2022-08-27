@@ -56,7 +56,7 @@ class AbsensiExport implements FromView
             'kerja' =>Absen::join('sales','absens.sales_id','=','sales.id')
             ->where([
                 ['absens.sales_id',$this->sales_id2],
-                ['absens.keterangan','=','Tepat Waktu']
+                ['absens.keterangan','!=','Libur']
             ])
             ->whereBetween('absens.tanggal',[$this->tanggal_awal, $this->tanggal_akhir])
             ->count(),

@@ -157,7 +157,7 @@ class AbsenController extends Controller
             'kerja' =>Absen::join('sales','absens.sales_id','=','sales.id')
             ->where([
                 ['absens.sales_id',$sales_id2],
-                ['absens.keterangan','=','Tepat Waktu']
+                ['absens.keterangan','!=','Libur']
             ])
             ->whereBetween('absens.tanggal',[$tanggal_awal, $tanggal_akhir])
             ->count(),
