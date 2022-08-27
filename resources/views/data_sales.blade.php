@@ -5,6 +5,7 @@
 
 <div class="container">
     <div class="row">
+        {{ Auth::user()->dealer }}
         <div class="col-md-6"><h2 class="judul">Data Manpower</h2></div>
         <div class="col-md-6" style="text-align: right;">
             <button class="btn custom-btn padding-btn" data-bs-toggle="modal" data-bs-target="#modalSales">Tambah Manpower</button>
