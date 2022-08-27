@@ -6,6 +6,7 @@ use App\Models\Dealer;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -26,8 +27,14 @@ class SaleController extends Controller
         ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
         ->get();
 
-        $dealer = Dealer::orderBy('dealer_code','asc')
-        ->get();
+        if (Auth::user()->dealer == 'group') {
+            $dealer = Dealer::orderBy('dealer_code','asc')
+            ->get();
+        } else {
+            $dealer = Dealer::orderBy('dealer_code','asc')
+            ->where('dealer_code',Auth::user()->dealer)
+            ->get();
+        }
 
         return view('data_sales',compact('data','dealer'));
     }
@@ -65,10 +72,6 @@ class SaleController extends Controller
      * @param  \App\Models\Manpower  $manpower
      * @return \Illuminate\Http\Response
      */
-    public function show(Manpower $manpower)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -114,8 +117,4 @@ class SaleController extends Controller
      * @param  \App\Models\Manpower  $manpower
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manpower $manpower)
-    {
-        //
-    }
 }

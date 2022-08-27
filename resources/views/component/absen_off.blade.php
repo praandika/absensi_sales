@@ -8,7 +8,7 @@
             <input type="hidden" id="sales_id3" name="sales_id3" value="{{ old('sales_id3') }}" required>
             <input id="nama_sales3" type="text" class="form-control input-border-bottom custom-input" name="nama_sales3"
                 value="{{ old('nama_sales3') }}" data-bs-toggle="modal" data-bs-target="#exampleModal3"
-                style="text-transform: uppercase;" placeholder="Nama Salesman" required>
+                style="text-transform: uppercase;" placeholder="Nama Manpower" required>
         </div>
 
         <div class="form-group form-floating-label col-lg-3">

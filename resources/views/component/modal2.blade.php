@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content modal-custom">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Salesman</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Manpower</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -12,7 +12,7 @@
                     <table id="modal-filter-select" class="display table tableSales table-custom" width="100%">
                         <thead>
                             <tr>
-                                <th>Nama Sales</th>
+                                <th>Nama Manpower</th>
                                 <th>Dealer</th>
                             </tr>
                         </thead>

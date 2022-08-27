@@ -55,7 +55,7 @@ class AbsenController extends Controller
     public function store(Request $req)
     {
         $sekarang = Carbon::now('GMT+8')->format('H:i:s');
-        $telat = '08:30:00';
+        $telat = '08:11:00';
 
         $data = new Absen;
 
@@ -125,8 +125,10 @@ class AbsenController extends Controller
 	}
 
     public function generate_pdf($tanggal_awal, $tanggal_akhir, $sales_id2, $dealer_code){
-        $ta = date_format($tanggal_awal, "Ymd");
-        $tak = date_format($tanggal_akhir, "Ymd");
+        $ta = Carbon::parse($tanggal_awal)->translatedFormat('Ymd');
+        $tak = Carbon::parse($tanggal_akhir)->translatedFormat('Ymd');
+        // dd($ta, $tak);
+
         $data  =[
             'absen' => Absen::join('sales','absens.sales_id','=','sales.id')
             ->where('absens.sales_id',$sales_id2)

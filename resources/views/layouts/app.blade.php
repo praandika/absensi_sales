@@ -48,11 +48,13 @@
                             <a class="nav-link {{ Route::is('absen.*') || Route::is('absen') ? 'active-menu' : '' }}" href="{{ route('absen') }}">Absen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('sales.*') ? 'active-menu' : '' }}" href="{{ route('sales.index') }}">Data Sales</a>
+                            <a class="nav-link {{ Route::is('sales.*') ? 'active-menu' : '' }}" href="{{ route('sales.index') }}">Data Manpower</a>
                         </li>
+                        @if(Auth::user()->dealer == 'group')
                         <li class="nav-item">
                             <a class="nav-link {{ Route::is('dealer.*') ? 'active-menu' : '' }}" href="{{ route('dealer.index') }}">Data Dealer</a>
                         </li>
+                        @endif
 
                         <!-- Authentication Links -->
                         @guest

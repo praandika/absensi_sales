@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title','Data Sales')
+@section('title','Data Manpower')
 
 @section('content')
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6"><h2 class="judul">Data Sales</h2></div>
+        <div class="col-md-6"><h2 class="judul">Data Manpower</h2></div>
         <div class="col-md-6" style="text-align: right;">
-            <button class="btn custom-btn padding-btn" data-bs-toggle="modal" data-bs-target="#modalSales">Tambah Sales</button>
+            <button class="btn custom-btn padding-btn" data-bs-toggle="modal" data-bs-target="#modalSales">Tambah Manpower</button>
         </div>
     </div>
     <br>
@@ -54,7 +54,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content modal-custom">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalSalesLabel">Tambah Sales</h5>
+                <h5 class="modal-title" id="modalSalesLabel">Tambah Manpower</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('sales.store') }}" method="post">
@@ -64,6 +64,7 @@
                         <div class="col">
                             <input type="text" class="form-control custom-input" placeholder="Nama" aria-label="Nama" name="nama" autocomplete="off" required>
                         </div>
+                        @if(Auth::user()->dealer == 'group')
                         <div class="col">
                             <select class="form-select custom-select" aria-label="Default select example" name="dealer" required>
                                 <option selected>Pilih Dealer</option>
@@ -72,6 +73,14 @@
                                 @endforeach
                             </select>
                         </div>
+                        @else
+                            @foreach($dealer as $o)
+                            <div class="col">
+                                <input type="text" class="form-control custom-input" placeholder="Dealer" aria-label="Dealer" name="dealer" autocomplete="off" value="{{ $o->dealer_name }}" required>
+                            </div>
+                            <input type="hidden" name="dealer" value="{{ $o->id }}">
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
