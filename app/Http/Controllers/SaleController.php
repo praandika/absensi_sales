@@ -27,18 +27,14 @@ class SaleController extends Controller
             ->orderBy('dealers.dealer_code','asc')
             ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
             ->get();
+            $dealer = Dealer::orderBy('dealer_code','asc')
+            ->get();
         } else {
             $data = Sale::join('dealers','sales.dealer_id','=','dealers.id')
             ->where('dealers.dealer_code',Auth::user()->dealer)
             ->orderBy('dealers.dealer_code','asc')
             ->select('dealers.dealer_code','dealers.dealer_name','sales.nama_sales','sales.id')
             ->get();
-        }
-
-        if (Auth::user()->dealer == 'group') {
-            $dealer = Dealer::orderBy('dealer_code','asc')
-            ->get();
-        } else {
             $dealer = Dealer::orderBy('dealer_code','asc')
             ->where('dealer_code',Auth::user()->dealer)
             ->get();

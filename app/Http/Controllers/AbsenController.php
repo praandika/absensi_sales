@@ -7,9 +7,9 @@ use App\Models\Sale;
 use App\Models\Dealer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Auth;
 use App\Exports\AbsensiExport;
 use PDF;
+use Illuminate\Support\Facades\Auth;
 
 class AbsenController extends Controller
 {
@@ -24,13 +24,26 @@ class AbsenController extends Controller
     public function index()
     {
         $today = Carbon::now('GMT+8')->format('Y-m-d');
-        $data = Absen::join('sales','absens.sales_id','=','sales.id')
-        ->where('absens.tanggal',$today)
-        ->get();
-        $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
-        ->orderBy('dealers.dealer_code','asc')
-        ->select('dealers.dealer_name','sales.id','sales.nama_sales','dealers.dealer_code')
-        ->get();
+        if (Auth::user()->dealer == 'group') {
+            $data = Absen::join('sales','absens.sales_id','=','sales.id')
+            ->where('absens.tanggal',$today)
+            ->get();
+            $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+            ->orderBy('dealers.dealer_code','asc')
+            ->select('dealers.dealer_name','sales.id','sales.nama_sales','dealers.dealer_code')
+            ->get();
+        } else {
+            $data = Absen::join('sales','absens.sales_id','=','sales.id')
+            ->join('dealers','sales.dealer_id','=','dealers.id')
+            ->where('dealers.dealer_code', Auth::user()->dealer)
+            ->where('absens.tanggal',$today)
+            ->get();
+            $sale = Sale::join('dealers','sales.dealer_id','=','dealers.id')
+            ->where('dealers.dealer_code', Auth::user()->dealer)
+            ->orderBy('dealers.dealer_code','asc')
+            ->select('dealers.dealer_name','sales.id','sales.nama_sales','dealers.dealer_code')
+            ->get();
+        }
         return view('data',compact('data','sale'));
     }
 
