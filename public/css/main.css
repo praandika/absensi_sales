@@ -36,7 +36,7 @@ input.custom-input{
     font-size: 15px;
 }
 
-input[readonly]{
+input:read-only{
     background-color: #0F0F0F !important;
     color: #b7b7b7 !important;
 }
