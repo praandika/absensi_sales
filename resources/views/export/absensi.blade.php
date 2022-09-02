@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th colspan="5" style="font-size: 20px; font-weight: bold; text-align: center;">Absensi Salesman Bisma
+            <th colspan="5" style="font-size: 20px; font-weight: bold; text-align: center;">Absensi Manpower Bisma
             </th>
         </tr>
         <tr>
