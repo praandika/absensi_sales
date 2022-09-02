@@ -76,7 +76,7 @@
                         @else
                             @foreach($dealer as $o)
                             <div class="col">
-                                <input type="text" class="form-control custom-input" placeholder="Dealer" aria-label="Dealer" name="dealer" autocomplete="off" value="{{ $o->dealer_name }}" readonly required>
+                                <input type="text" class="form-control custom-input" placeholder="Dealer" aria-label="Dealer" name="dealer" autocomplete="off" value="{{ $o->dealer_name }}" style="background-color: #0F0F0F !important; color: #b7b7b7 !important;" readonly required>
                             </div>
                             <input type="hidden" name="dealer" value="{{ $o->id }}">
                             @endforeach

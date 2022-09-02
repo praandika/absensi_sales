@@ -36,11 +36,6 @@ input.custom-input{
     font-size: 15px;
 }
 
-input:read-only{
-    background-color: #0F0F0F !important;
-    color: #b7b7b7 !important;
-}
-
 input[type=date]{
     color: #6f6f6f !important;
 }
