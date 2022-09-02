@@ -15,13 +15,22 @@
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label custom-label">Dealer</label>
+                @if(Auth::user()->dealer == 'group')
                 <select class="form-select custom-select" aria-label="Default select example" name="dealer" required>
                     <option value="{{ $o->dealer_id }}" selected>{{ $o->dealer_name }}</option>
-                    <option disabled><hr></option>
+                    <option disabled>
+                        <hr>
+                    </option>
                     @foreach($dealer as $a)
                     <option value="{{ $a->id }}">{{ $a->dealer_name }}</option>
                     @endforeach
                 </select>
+                @else
+                <input type="text" class="form-control custom-input" placeholder="Dealer" aria-label="Dealer"
+                    name="dealer" autocomplete="off" value="{{ $o->dealer_name }}"
+                    style="background-color: #0F0F0F !important; color: #b7b7b7 !important;" readonly required>
+                <input type="hidden" name="dealer" value="{{ $o->dealer_id }}">
+                @endif
             </div>
 
             <div class="row">
