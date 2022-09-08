@@ -37,6 +37,13 @@ class users_seeder extends Seeder
                 'password' => Hash::make('dalungaa010401'),
                 'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
             ],
+            [
+                'nama' => 'Admin',
+                'username' => 'admin',
+                'dealer' => 'group',
+                'password' => Hash::make('admin'),
+                'created_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }
